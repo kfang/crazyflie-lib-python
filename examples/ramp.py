@@ -74,6 +74,10 @@ class MotorRampExample:
         self._lg_stab = LogConfig(name='Barometer', period_in_ms=500)
         self._lg_stab.add_variable('baro.asl', 'float')
         self._lg_stab.add_variable('baro.pressure', 'float')
+        self._lg_stab.add_variable('stabilizer.pitch', 'float')
+        self._lg_stab.add_variable('stabilizer.yaw', 'float')
+        self._lg_stab.add_variable('stabilizer.roll', 'float')
+        self._lg_stab.add_variable('stabilizer.thrust', 'float')
 
         # Adding the configuration cannot be done until a Crazyflie is
         # connected, since we need to check that the variables we
@@ -151,8 +155,8 @@ class MotorRampExample:
         print('unlocked thrust protection')
 
         while not self._stop:
-            print('throttle %s' % self._nextThrottle)
-            self._cf.commander.send_setpoint(roll, pitch, yawrate, self._nextThrottle)
+            # print('throttle %s' % self._nextThrottle)
+            # self._cf.commander.send_setpoint(roll, pitch, yawrate, self._nextThrottle)
             time.sleep(0.1)
 
         # while thrust >= 20000:
